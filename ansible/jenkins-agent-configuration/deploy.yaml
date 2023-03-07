@@ -1,0 +1,6 @@
+- hosts: jenkins-agent
+  become: true
+  roles:
+    - install-required-libs
+    - install-jenkins
+    - install-docker

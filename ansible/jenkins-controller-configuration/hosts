@@ -1,0 +1,6 @@
+[jenkins-server]
+54.81.183.139
+
+[all:vars]
+ansible_ssh_private_key_file=/mnt/c/Users/BrunoS/Desktop/Projetos/terraform-ansible-jenkins/ssh-key/ec2-ssh.pem
+ansible_user=ubuntu

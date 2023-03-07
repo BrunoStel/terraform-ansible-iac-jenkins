@@ -1,0 +1,4 @@
+ec2-ssh.pem
+.terraform
+.terraform.lock.hcl
+jenkins_backup.tar

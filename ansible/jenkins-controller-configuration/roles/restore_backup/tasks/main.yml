@@ -1,0 +1,10 @@
+---
+- name: Extract jenkins_backup.tar into /var/lib/foo
+  ansible.builtin.unarchive:
+    src: jenkins_backup.tar
+    dest: /var/lib/jenkins
+
+- name: Restart jenkins after reload of backup file
+  ansible.builtin.systemd:
+    name: jenkins
+    state: restarted

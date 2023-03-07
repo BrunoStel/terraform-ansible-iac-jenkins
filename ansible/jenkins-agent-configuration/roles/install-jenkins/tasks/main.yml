@@ -1,0 +1,31 @@
+---
+  - name: Download Long Term Jenkins release
+    ansible.builtin.apt_key:
+      url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+      state: present
+    become: yes
+
+  - name: Ensure the repository is configured
+    ansible.builtin.apt_repository: 
+      repo: deb https://pkg.jenkins.io/debian-stable binary/
+      state: present
+    become: yes
+
+  - name: Update apt cache
+    ansible.builtin.apt:
+      update_cache: yes
+      state: latest
+ 
+  - name: Install jenkins
+    ansible.builtin.apt:
+      name: jenkins
+      state: latest
+
+  - name: daemon-reload to pick up config changes
+    ansible.builtin.systemd:
+      daemon_reload: yes
+
+  - name: Start jenkins
+    ansible.builtin.systemd:
+      name: jenkins
+      state: started

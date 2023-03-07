@@ -1,0 +1,30 @@
+---
+  - name: Add Docker GPG apt Key
+    ansible.builtin.apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+
+  - name: Add Docker Repository
+    ansible.builtin.apt_repository:
+      repo: deb https://download.docker.com/linux/ubuntu focal stable
+      state: present
+
+  - name: Update apt and install docker
+    ansible.builtin.apt:
+      name:
+        - docker
+        - docker.io
+        - docker-compose
+        - docker-registry
+      state: latest
+      update_cache: true
+
+  - name: Verify if docker is running
+    ansible.builtin.service:
+      name: docker
+      state: started
+      enabled: yes
+
+  - name: Giving jenkins permission to run docker
+    ansible.builtin.shell:
+      cmd: usermod -a -G docker jenkins && newgrp docker && chmod 666 /var/run/docker.sock

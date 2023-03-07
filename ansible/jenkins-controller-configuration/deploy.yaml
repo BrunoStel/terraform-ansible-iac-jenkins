@@ -1,0 +1,8 @@
+- hosts: jenkins-server
+  become: true
+  roles:
+    - install-required-libs
+    - install-jenkins
+    - install-docker
+    - restore_backup
+    - redirect-port

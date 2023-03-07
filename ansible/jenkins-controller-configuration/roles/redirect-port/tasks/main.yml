@@ -1,0 +1,12 @@
+---
+  - name: Redirect port 80 to 8080
+    ansible.builtin.iptables:
+      table: nat
+      chain: PREROUTING
+      protocol: tcp
+      match: tcp
+      destination_port: '80'
+      jump: REDIRECT
+      to_ports: '8080'
+      comment: Redirect web traffic to port 8080
+    become: yes  

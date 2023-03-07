@@ -1,0 +1,22 @@
+---
+- name: Install required libs
+  ansible.builtin.apt:
+    name:
+      - curl
+      - git
+      - apt-transport-https
+      - ca-certificates
+      - software-properties-common
+      - python3-pip
+      - python3-botocore
+      - virtualenv
+      - python3-setuptools
+      - openjdk-11-jdk-headless
+      - awscli
+    state: present
+    update_cache: yes
+
+- name: install pip libs
+  pip:
+    name: boto3  
+    state: present
