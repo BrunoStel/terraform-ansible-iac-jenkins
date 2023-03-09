@@ -1,6 +1,6 @@
 def ansibleRun(){
   try{
-    sh """ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts deploy.yaml"""
+    sh """ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/jenkins-controller-configuration/hosts ansible/jenkins-controller-configuration/deploy.yaml"""
   }catch(error){
   }
 }
@@ -15,11 +15,9 @@ pipeline {
     stages{
         stage("Deploy Ansible"){
             steps{
-              dir('ansible/jenkins-agent-configuration'){
                 script{
                   ansibleRun()
                 }
-              }
             }
         }
     }
