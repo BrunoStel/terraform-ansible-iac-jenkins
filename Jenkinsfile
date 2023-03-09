@@ -5,6 +5,12 @@ def ansibleRun(){
   }
 }
 
+def arquivos(){
+  try{
+    sh """ls"""
+  }catch(error){
+  }
+}
 
 pipeline {
     agent any
@@ -16,7 +22,7 @@ pipeline {
             steps{
               dir('ansible/jenkins-agent-configuration'){
                 script{
-                  ansibleRun()
+                  arquivos()
                 }
               }
             }
