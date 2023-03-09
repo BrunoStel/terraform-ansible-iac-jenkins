@@ -1,12 +1,10 @@
 def ansibleRun(){
   try{
-    sh """ansible-playbook --version"""
+    sh """ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i hosts --private-key=$ANSIBLE_SSH_EC2_KEY deploy.yaml"""
   }catch(error){
   }
 }
 
-//ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/jenkins-controller-configuration/hosts ansible/jenkins-controller-configuration/deploy.yaml
-//--private-key=$ANSIBLE_SSH_EC2_KEY
 
 pipeline {
     agent any
@@ -16,9 +14,11 @@ pipeline {
     stages{
         stage("Deploy Ansible"){
             steps{
+              dir('ansible/jenkins-agent-configuration'){
                 script{
                   ansibleRun()
                 }
+              }
             }
         }
     }
