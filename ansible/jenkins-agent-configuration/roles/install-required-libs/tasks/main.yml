@@ -12,5 +12,6 @@
       - python3-setuptools
       - openjdk-11-jdk-headless
       - firewalld
+      - ansible
     state: present
     update_cache: yes
