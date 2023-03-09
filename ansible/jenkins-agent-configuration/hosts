@@ -1,5 +1,5 @@
 [jenkins-agent]
-3.94.5.56
+54.174.137.15
 
 [all:vars]
 ansible_ssh_private_key_file=/mnt/c/Users/BrunoS/Desktop/Projetos/terraform-ansible-jenkins/ssh-key/ec2-ssh.pem
