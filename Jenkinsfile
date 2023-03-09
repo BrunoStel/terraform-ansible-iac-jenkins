@@ -1,10 +1,11 @@
 def ansibleRun(){
   try{
-    sh """ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/jenkins-controller-configuration/hosts ansible/jenkins-controller-configuration/deploy.yaml"""
+    sh """ansible-playbook --version"""
   }catch(error){
   }
 }
 
+//ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/jenkins-controller-configuration/hosts ansible/jenkins-controller-configuration/deploy.yaml
 //--private-key=$ANSIBLE_SSH_EC2_KEY
 
 pipeline {
